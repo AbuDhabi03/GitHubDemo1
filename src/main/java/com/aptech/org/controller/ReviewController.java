@@ -5,10 +5,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
+@RestController
 public class ReviewController {
+	
+	@Value("${student.name: No Name}")
+	private String name;
+	
+	@Value("${student.email: No Email}")
+	private String email;
+	
+	//localhost:8080/getDetails
+	@GetMapping("/getDetails")
+	public String getStudentDetails() {
+		return "Student Details: " + name + " " + email;
+	}
 	
 	//localhost:8080/get
 	//@ResponseBody
